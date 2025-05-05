@@ -9,21 +9,22 @@ def post_list(request):
 
     return render(
         request,
-        "blog/post/list.hmtl",
+        "blog/post/list.html",
         context,
     )
 
 
 def post_detail(request, id):
-    posts = get_object_or_404(
+    post = get_object_or_404(
         Post,
-        id,
+        id=id,
         status=Post.Status.PUBLISHED,
     )
-    context = {"posts": posts}
+
+    context = {"post": post}
 
     return render(
         request,
-        "blog/post/detail.hmtl",
+        "blog/post/detail.html",
         context,
     )

@@ -1,0 +1,20 @@
+{% extends "blog/_base.html" %}
+{% block title %}
+    {{post.title}}
+{% endblock title %}
+
+{% block content %}
+<div>
+    <h1 class="display-1 fw-semibold">
+        {{post.title}}
+    </h1>
+    <hr>
+</div>
+    
+    <p class="text-secondary">
+        Published {{ post.publish }} by <span class="text-primary fw-semibold">{{ post.author }}</span>
+    </p>
+    <span class="fw-semibold">
+        {{ post.body|capfirst|linebreaks }}
+    </span>
+{% endblock content %}
