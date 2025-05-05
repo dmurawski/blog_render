@@ -1,25 +1,25 @@
-{% extends "blog/_base.html" %}
-{% block title %}
-    My Blog
+{% extends "blog/_base.html" %} 
+{% block title %} My Blog 
 {% endblock title %}
-
 {% block content %}
 <div>
-    <h1 class="display-1 fw-semibold">My blog</h1>
-    <hr>
+  <h1 class="display-1 fw-semibold">My blog</h1>
+  <hr />
 </div>
-    {% for post in posts %}
-        <h2 class="text-primary">
-            <a class="text-decoration-none" href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a>
-        </h2>
-        <p class="text-secondary">
-            Published {{ post.publish }} by <span class="text-primary fw-semibold">{{ post.author }}</span>
-        </p>
-        <span class="fw-semibold">
-            {{ post.body|truncatewords:30|capfirst|linebreaks }}
-        </span>
+{% for post in posts %}
+<h2 class="text-primary">
+  <a class="text-decoration-none" href="{{ post.get_absolute_url }}"
+    >{{ post.title }}</a
+  >
+</h2>
+<p class="text-secondary">
+  Published {{ post.publish }} by
+  <span class="text-primary fw-semibold">{{ post.author }}</span>
+</p>
+<span class="fw-semibold">
+  {{ post.body|truncatewords:30|capfirst|linebreaks }}
+</span>
 
-    {% empty %}
-        <p>No posts found.</p>
-    {% endfor %}
-{% endblock content %}
+{% empty %}
+<p>No posts found.</p>
+{% endfor %} {% endblock content %}
