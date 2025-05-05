@@ -22,4 +22,6 @@
 
 {% empty %}
 <p>No posts found.</p>
-{% endfor %} {% endblock content %}
+{% endfor %} 
+{% include "pagination.html" with page=posts %}
+{% endblock content %}
