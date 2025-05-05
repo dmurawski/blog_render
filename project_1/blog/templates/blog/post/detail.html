@@ -17,4 +17,7 @@
     <span class="fw-semibold">
         {{ post.body|capfirst|linebreaks }}
     </span>
+    <p>
+        <a href="{% url 'blog:post_share' post.id %}">Share this post!</a>
+    </p>
 {% endblock content %}
