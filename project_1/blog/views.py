@@ -32,7 +32,7 @@ def post_share(request, post_id):
                 from_email=None,
                 recipient_list=[cd["to"]],
             )
-        sent = True
+            sent = True
     else:
         form = EmailPostForm(post_id=post.id)
 
