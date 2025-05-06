@@ -1,17 +1,27 @@
-{% extends "blog/_base.html" %} 
-{% block title %} My Blog 
+{% extends "blog/_base.html" %}
+{% block title %} My Blog
 {% endblock title %}
 {% block content %}
 <div>
   <h1 class="display-1 fw-semibold">My blog</h1>
+  {% if tag %}
+  <h2>Posts tagged with "{{ tag.name }}"</h2>
+  {% endif %}
   <hr />
 </div>
 {% for post in posts %}
 <h2 class="text-primary">
-  <a class="text-decoration-none" href="{{ post.get_absolute_url }}"
-    >{{ post.title }}</a
-  >
+  <a class="text-decoration-none" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
 </h2>
+<h4>
+  Tags:
+  {% for tag in post.tags.all %}
+  <a class="text-decoration-none" href="{% url 'blog:post_list_by_tag' tag.slug %}">
+    <span class="text-primary">{{ tag.name }}</span>
+  </a>
+  {% if not forloop.last %},{% endif %}
+  {% endfor %}
+</h4>
 <p class="text-secondary">
   Published {{ post.publish }} by
   <span class="text-primary fw-semibold">{{ post.author }}</span>
@@ -22,6 +32,6 @@
 
 {% empty %}
 <p>No posts found.</p>
-{% endfor %} 
+{% endfor %}
 {% include "pagination.html" with page=posts %}
 {% endblock content %}
