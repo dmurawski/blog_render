@@ -1,6 +1,6 @@
 {% extends "blog/_base.html" %}
 {% block title %}
-    {{post.title}}
+{{post.title}}
 {% endblock title %}
 
 {% block content %}
@@ -10,14 +10,35 @@
     </h1>
     <hr>
 </div>
-    
-    <p class="text-secondary">
-        Published {{ post.publish }} by <span class="text-primary fw-semibold">{{ post.author }}</span>
-    </p>
-    <span class="fw-semibold">
-        {{ post.body|capfirst|linebreaks }}
-    </span>
-    <p>
-        <a href="{% url 'blog:post_share' post.id %}">Share this post!</a>
-    </p>
+
+<p class="text-secondary">
+    Published {{ post.publish }} by <span class="text-primary fw-semibold">{{ post.author }}</span>
+</p>
+<span class="fw-semibold">
+    {{ post.body|capfirst|linebreaks }}
+</span>
+<p>
+    <a href="{% url 'blog:post_share' post.id %}">Share this post!</a>
+</p>
+{% with comments.count as total_comments %}
+<h2>{{ total_comments }} comment{{ total_comments|pluralize }}</h2>
+{% endwith %}
+{% for comment in comments %}
+<div class="card text-bg-light mb-5">
+    <div class="card-header">
+        <h5 class="card-title">
+            Comment {{ forloop.counter }} by <span class="text-primary fw-semibold">{{ comment.name }}</span>
+            {{ comment.created_at }}
+        </h5>
+    </div>
+    <div class="card-body">
+        <span>
+            {{ comment.body|linebreaks }}
+        </span>
+    </div>
+</div>
+{% empty %}
+<p>There are no comments.</p>
+{% endfor %}
+{% include "blog/post/includes/comment_form.html" %}
 {% endblock content %}
