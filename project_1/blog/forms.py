@@ -1,7 +1,7 @@
 from crispy_bootstrap5.bootstrap5 import FloatingField
 from crispy_forms.bootstrap import Field, Tab, TabHolder
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Div, Field, Fieldset, Layout, Submit
+from crispy_forms.layout import HTML, Div, Field, Fieldset, Layout, Submit
 from django import forms
 from django.urls import reverse
 
@@ -34,11 +34,13 @@ class EmailPostForm(forms.Form):
                 "Imię",  # Tytuł sekcji
                 FloatingField("name", placeholder="Your first name"),
             ),
+            HTML("<hr>"),
             Fieldset(
                 "Kontakt",  # Druga sekcja
                 FloatingField("email"),
                 FloatingField("to"),
             ),
+            HTML("<hr>"),
             Fieldset(
                 "Wiadomość",  # Trzecia sekcja
                 Field("comments", label="", rows="5", cols="0"),
