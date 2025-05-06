@@ -1,5 +1,6 @@
 from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Count
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_POST
 from taggit.models import Tag
@@ -90,7 +91,22 @@ def post_detail(request, year, month, day, post):
 
     comments = post.comments.filter(active=True)
     form = CommentForm()
-    context = {"post": post, "comments": comments, "form": form}
+
+    # List of smiliar posts
+    # list of id for tags of current post [1,2,3,4,....]
+    post_tags_ids = post.tags.values_list("id", flat=True)
+    smiliar_posts = Post.published.filter(tags__in=post_tags_ids).exclude(id=post.id)
+    similar_posts = smiliar_posts.annotate(same_tags=Count("tags")).order_by(
+        "-same_tags",
+        "-publish",
+    )[:4]
+
+    context = {
+        "post": post,
+        "comments": comments,
+        "form": form,
+        "similar_posts": similar_posts,
+    }
 
     return render(
         request,
