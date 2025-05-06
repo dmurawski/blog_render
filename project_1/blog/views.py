@@ -15,7 +15,7 @@ def post_share(request, post_id):
     sent = False
 
     if request.method == "POST":
-        form = EmailPostForm(request.POST)
+        form = EmailPostForm(request.POST, post_id=post.id)
         if form.is_valid():
             cd = form.cleaned_data
             post_url = request.build_absolute_uri(post.get_absolute_url())
@@ -34,7 +34,7 @@ def post_share(request, post_id):
             )
         sent = True
     else:
-        form = EmailPostForm()
+        form = EmailPostForm(post_id=post.id)
 
     return render(
         request,
