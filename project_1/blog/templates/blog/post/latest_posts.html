@@ -1,0 +1,11 @@
+<ul>
+    {% for post in latest_posts %}
+
+    <li>
+        <a class="text-decoration-none text-primary" href="{{ post.get_absolute_url }}">
+            {{post.title|capfirst }}
+        </a>
+    </li>
+
+    {% endfor %}
+</ul>
