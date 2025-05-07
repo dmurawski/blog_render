@@ -1,4 +1,5 @@
 {% extends "blog/_base.html" %}
+{% load blog_tags %}
 {% block title %}
 {{post.title}}
 {% endblock title %}
@@ -15,7 +16,7 @@
     Published {{ post.publish }} by <span class="text-primary fw-semibold">{{ post.author }}</span>
 </p>
 <span class="fw-semibold">
-    {{ post.body|capfirst|linebreaks }}
+    {{ post.body|capfirst|linebreaks|markdown }}
 </span>
 <p>
     <a class="h6 text-decoration-none text-primary fw-bold" href="{% url 'blog:post_share' post.id %}">Share this
