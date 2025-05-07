@@ -24,6 +24,11 @@
                 <h2>My blog</h2>
                 <p>This is my blog.</p>
                 <p>I've written {% total_posts %} posts so far.</p>
+                <p>
+                    <a class="text-decoration-none text-primary" href="{% url 'blog:post_feed' %}">
+                        Subscribe to my RSS feed
+                    </a>
+                </p>
                 <hr>
                 <h3>Latest posts</h3>
                 {% show_latest_posts 3%}
