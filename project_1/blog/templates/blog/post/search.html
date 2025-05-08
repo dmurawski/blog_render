@@ -7,7 +7,6 @@ Search
 {% block content %}
 <div class="container mt-5">
     {% if query %}
-
     <h1>Posts containing "{{ query }}"</h1>
     <h3>
         {% with results.count as total_results %}
@@ -23,18 +22,15 @@ Search
     <p>
         {{ post.body|markdown|truncatewords_html:12 }}
     </p>
+
     {% empty %}
-    <div class="row">
-        <div class="col-8 offset-2">
-            <p>There are no results for your query.</p>
-            {% endfor %}
-            <p>
-                <a class="btn-primary btn" href="{% url 'blog:post_search' %}">
-                    Search again
-                </a>
-            </p>
-        </div>
-    </div>
+    <p>There are no results for your query.</p>
+    {% endfor %}
+    <p>
+        <a class="btn-primary btn" href="{% url 'blog:post_search' %}">
+            Search again
+        </a>
+    </p>
     {% else %}
 
     <div class="row">
