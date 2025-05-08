@@ -1,0 +1,52 @@
+{% extends "blog/_base.html" %}
+{% load crispy_forms_tags %}
+{% load blog_tags %}
+{% block title %}
+Search
+{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    {% if query %}
+
+    <h1>Posts containing "{{ query }}"</h1>
+    <h3>
+        {% with results.count as total_results %}
+        <p>Found {{ total_results }} result{{ total_results|pluralize }}</p>
+        {% endwith %}
+    </h3>
+    {% for post in results %}
+    <h4>
+        <a class="text-decoration-none text-primary" href="{{ post.get_absolute_url }}">
+            {{ post.title }}
+        </a>
+    </h4>
+    <p>
+        {{ post.body|markdown|truncatewords_html:12 }}
+    </p>
+    {% empty %}
+    <div class="row">
+        <div class="col-8 offset-2">
+            <p>There are no results for your query.</p>
+            {% endfor %}
+            <p>
+                <a class="btn-primary btn" href="{% url 'blog:post_search' %}">
+                    Search again
+                </a>
+            </p>
+        </div>
+    </div>
+    {% else %}
+
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h1>Search for posts</h1>
+            <form method="GET" action="{% url 'blog:post_search' %}">
+                {{ form|crispy }}
+                <input type="submit" value="Search" class="btn w-100 btn-primary">
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

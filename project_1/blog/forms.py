@@ -8,6 +8,10 @@ from django.urls import reverse
 from .models import Comment
 
 
+class SearchForm(forms.Form):
+    query = forms.CharField()
+
+
 class EmailPostForm(forms.Form):
     name = forms.CharField(max_length=25)
     email = forms.EmailField()

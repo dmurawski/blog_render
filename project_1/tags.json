@@ -1,0 +1,88 @@
+[
+    {
+        "model": "taggit.tag",
+        "pk": 1,
+        "fields": {
+            "name": "music",
+            "slug": "music"
+        }
+    },
+    {
+        "model": "taggit.tag",
+        "pk": 2,
+        "fields": {
+            "name": "jazz",
+            "slug": "jazz"
+        }
+    },
+    {
+        "model": "taggit.tag",
+        "pk": 3,
+        "fields": {
+            "name": "django",
+            "slug": "django"
+        }
+    },
+    {
+        "model": "taggit.tag",
+        "pk": 4,
+        "fields": {
+            "name": "markdown",
+            "slug": "markdown"
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 1,
+        "fields": {
+            "tag": 1,
+            "content_type": 7,
+            "object_id": 1
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 2,
+        "fields": {
+            "tag": 2,
+            "content_type": 7,
+            "object_id": 1
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 3,
+        "fields": {
+            "tag": 3,
+            "content_type": 7,
+            "object_id": 1
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 4,
+        "fields": {
+            "tag": 2,
+            "content_type": 7,
+            "object_id": 2
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 5,
+        "fields": {
+            "tag": 2,
+            "content_type": 7,
+            "object_id": 3
+        }
+    },
+    {
+        "model": "taggit.taggeditem",
+        "pk": 6,
+        "fields": {
+            "tag": 4,
+            "content_type": 7,
+            "object_id": 5
+        }
+    }
+]

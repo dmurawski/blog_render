@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
+    "django.contrib.postgres",
     # 3rd-party apps
     "crispy_forms",
     "crispy_bootstrap5",
